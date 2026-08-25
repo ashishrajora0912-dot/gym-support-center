@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASHISH FITNESS ZONE — Support Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0d0d0d;
+    --charcoal: #1a1a1a;
+    --steel: #2a2a2a;
+    --mid: #444;
+    --muted: #888;
+    --light: #c8c8c0;
+    --off-white: #f0ede6;
+    --white: #fafaf8;
+    --accent: #e8ff00;
+    --accent2: #ff4d1c;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5vw;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--white);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex; gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    padding: 8px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    padding: 80px 5vw 60px;
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(52px, 7vw, 88px);
+    line-height: 0.95;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .hero-title .highlight { color: var(--accent); }
+
+  .hero-sub {
+    color: var(--light);
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 40px;
+  }
+
+  .hero-search {
+    display: flex;
+    border: 1px solid var(--border);
+    background: var(--charcoal);
+    overflow: hidden;
+  }
+
+  .hero-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 14px 18px;
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    outline: none;
+  }
+
+  .hero-search input::placeholder { color: var(--muted); }
+
+  .hero-search button {
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    padding: 14px 22px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .hero-stats {
+    display: flex; gap: 2rem; margin-top: 32px;
+  }
+
+  .stat-item {}
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: var(--white);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+  }
+
+  /* HERO VISUAL SIDE */
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .status-card {
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+
+  .status-card:hover { border-color: rgba(255,255,255,0.2); }
+
+  .status-icon {
+    width: 44px; height: 44px;
+    background: var(--steel);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .status-icon.green { background: rgba(100,220,120,0.12); color: #64dc78; }
+  .status-icon.yellow { background: rgba(232,255,0,0.1); color: var(--accent); }
+  .status-icon.red { background: rgba(255,77,28,0.12); color: var(--accent2); }
+
+  .status-info { flex: 1; }
+  .status-title { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
+  .status-desc { font-size: 13px; color: var(--muted); font-weight: 300; }
+
+  .status-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+  }
+
+  .badge-green { background: rgba(100,220,120,0.12); color: #64dc78; }
+  .badge-yellow { background: rgba(232,255,0,0.1); color: var(--accent); }
+  .badge-red { background: rgba(255,77,28,0.12); color: var(--accent2); }
+
+  /* TOPICS */
+  .section {
+    padding: 72px 5vw;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 48px;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .topic-card {
+    background: var(--black);
+    padding: 32px 28px;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .topic-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+
+  .topic-card:hover { background: var(--charcoal); }
+  .topic-card:hover::after { width: 100%; }
+
+  .topic-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .topic-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .topic-desc {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .topic-count {
+    font-size: 12px;
+    color: var(--accent);
+    letter-spacing: 0.5px;
+  }
+
+  /* FAQ */
+  .faq-list { max-width: 760px; }
+
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-question {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--off-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: left;
+    padding: 22px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    transition: color 0.2s;
+  }
+
+  .faq-question:hover { color: var(--white); }
+  .faq-question.open { color: var(--accent); }
+
+  .faq-arrow {
+    font-size: 20px;
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    color: var(--muted);
+  }
+
+  .faq-question.open .faq-arrow { transform: rotate(45deg); color: var(--accent); }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    color: var(--muted);
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.75;
+  }
+
+  .faq-answer.open { max-height: 300px; }
+
+  .faq-answer p { padding-bottom: 22px; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .contact-card {
+    background: var(--black);
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  .contact-card:hover { background: var(--charcoal); }
+
+  .contact-card-icon { font-size: 28px; }
+  .contact-card-title { font-size: 18px; font-weight: 500; color: var(--white); }
+  .contact-card-sub { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+
+  .contact-card-action {
+    margin-top: auto;
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+
+  /* LIVE CHAT FORM */
+  .chat-form-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .form-group { margin-bottom: 20px; }
+
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 12px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-group textarea { min-height: 120px; resize: vertical; }
+  .form-group select { cursor: pointer; }
+
+  .submit-btn {
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    padding: 14px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+    width: 100%;
+  }
+
+  .submit-btn:hover { opacity: 0.85; }
+
+  .chat-info {
+    padding: 36px;
+    background: var(--charcoal);
+    border: 1px solid var(--border);
+  }
+
+  .chat-info-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: var(--white);
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  .hours-list { list-style: none; }
+  .hours-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .hours-list li span:last-child { color: var(--light); }
+  .hours-list li.today { color: var(--accent); }
+  .hours-list li.today span:last-child { color: var(--accent); }
+
+  .chat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(100,220,120,0.1);
+    padding: 8px 14px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #64dc78;
+  }
+
+  .dot {
+    width: 8px; height: 8px;
+    background: #64dc78;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 3px;
+    color: var(--muted);
+  }
+
+  .footer-logo span { color: var(--accent); }
+
+  .footer-note {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.5s ease both; }
+  .hero-title { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-search { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-stats { animation: fadeUp 0.6s 0.4s ease both; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; }
+    .chat-form-wrap { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ASHISH <span>FITNESS ZONE</span></div>
+  <ul class="nav-links">
+    <li><a href="#topics">Topics</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#hours">Hours</a></li>
+  </ul>
+  <button class="nav-cta">My Account</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-eyebrow">Support Center</p>
+    <h1 class="hero-title">BODYBUILDING KA<br>ASLI <span class="highlight">GHAR.</span></h1>
+    <p class="hero-sub">Bodybuilding ke liye best support — membership, training, aur billing — sab kuch ek jagah.</p>
+    <div class="hero-search">
+      <input type="text" placeholder="Search memberships, classes, billing..." id="searchInput" />
+      <button onclick="handleSearch()">Search →</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">2min</div>
+        <div class="stat-label">Avg. response</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label">Live chat</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">98%</div>
+        <div class="stat-label">Satisfaction</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="status-card">
+      <div class="status-icon green">💳</div>
+      <div class="status-info">
+        <div class="status-title">All Payment Systems</div>
+        <div class="status-desc">Billing & memberships processing normally</div>
+      </div>
+      <span class="status-badge badge-green">Operational</span>
+    </div>
+    <div class="status-card">
+      <div class="status-icon yellow">📱</div>
+      <div class="status-info">
+        <div class="status-title">App & Portal</div>
+        <div class="status-desc">Minor slowness reported — under review</div>
+      </div>
+      <span class="status-badge badge-yellow">Degraded</span>
+    </div>
+    <div class="status-card">
+      <div class="status-icon green">🏋️</div>
+      <div class="status-info">
+        <div class="status-title">Class Booking System</div>
+        <div class="status-desc">All slots available, bookings open</div>
+      </div>
+      <span class="status-badge badge-green">Operational</span>
+    </div>
+    <div class="status-card">
+      <div class="status-icon green">🔐</div>
+      <div class="status-info">
+        <div class="status-title">Gym Access & Entry</div>
+        <div class="status-desc">All locations — normal access</div>
+      </div>
+      <span class="status-badge badge-green">Operational</span>
+    </div>
+  </div>
+</section>
+
+<!-- TOPICS -->
+<section class="section" id="topics">
+  <p class="section-label">Browse by topic</p>
+  <h2 class="section-title">WHAT CAN WE HELP WITH?</h2>
+  <div class="topics-grid">
+    <div class="topic-card" onclick="scrollToFaq()">
+      <span class="topic-icon">🏷️</span>
+      <div class="topic-name">Memberships & Plans</div>
+      <div class="topic-desc">Upgrades, downgrades, cancellations, and plan comparisons. Everything about your membership.</div>
+      <div class="topic-count">14 articles →</div>
+    </div>
+    <div class="topic-card" onclick="scrollToFaq()">
+      <span class="topic-icon">💸</span>
+      <div class="topic-name">Billing & Payments</div>
+      <div class="topic-desc">Invoice history, payment methods, failed charges, and refund requests.</div>
+      <div class="topic-count">9 articles →</div>
+    </div>
+    <div class="topic-card" onclick="scrollToFaq()">
+      <span class="topic-icon">📅</span>
+      <div class="topic-name">Classes & Bookings</div>
+      <div class="topic-desc">Scheduling, waitlists, cancellation policies, and personal training sessions.</div>
+      <div class="topic-count">11 articles →</div>
+    </div>
+    <div class="topic-card" onclick="scrollToFaq()">
+      <span class="topic-icon">🔑</span>
+      <div class="topic-name">Access & Entry</div>
+      <div class="topic-desc">Keycards, app-based entry, guest passes, and multi-location access.</div>
+      <div class="topic-count">7 articles →</div>
+    </div>
+    <div class="topic-card" onclick="scrollToFaq()">
+      <span class="topic-icon">👤</span>
+      <div class="topic-name">Account Settings</div>
+      <div class="topic-desc">Password resets, personal details, communication preferences, and privacy.</div>
+      <div class="topic-count">6 articles →</div>
+    </div>
+    <div class="topic-card" onclick="scrollToFaq()">
+      <span class="topic-icon">🏛️</span>
+      <div class="topic-name">Facilities & Equipment</div>
+      <div class="topic-desc">Report issues, locker rentals, pool hours, and equipment availability.</div>
+      <div class="topic-count">8 articles →</div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <p class="section-label">Frequently asked</p>
+  <h2 class="section-title">QUICK ANSWERS</h2>
+  <div class="faq-list" id="faqList">
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I cancel or pause my membership?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>You can pause your membership for up to 3 months per year through the Member Portal under Account → Membership. To cancel, submit a request at least 7 days before your next billing date via the portal or by contacting our team. No cancellation fees apply on monthly plans — annual members may be subject to an early exit fee.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        I was charged twice this month — what do I do?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>We're sorry about that! Duplicate charges can happen during payment method updates. Please contact our billing team via live chat or email with your transaction reference numbers. We process refunds within 3–5 business days and will confirm by email once initiated.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        Can I bring a guest to the gym?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Premium and Elite members receive 2 complimentary guest passes per month. Additional passes can be purchased at the front desk for £10/day. Guests must be accompanied by the member at all times and sign a liability waiver on first visit. Guest access is not available during peak hours (6–9am, 5–8pm weekdays).</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I book a personal training session?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Personal training sessions can be booked via the Ashish Fitness Zone App under the "Train" tab. Select a trainer, browse their availability, and confirm. First-time PT sessions include a complimentary fitness assessment. If you have a package, your credits will be applied automatically at checkout.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        My keycard isn't working — how do I fix it?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>A keycard that's not working usually means it needs to be re-encoded, which takes about 2 minutes at any reception desk. If your membership is active and the card still fails, you can use app-based QR code entry as a temporary workaround. Visit reception or contact us and we'll sort a replacement immediately.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        How do I update my payment method?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Log into the Member Portal → Billing → Payment Methods → Add New. Your new card will be used for the next billing cycle. Old methods are not auto-deleted — you can manage multiple cards and set a default. For bank direct debit changes, please contact us directly as these require verification.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <p class="section-label">Get in touch</p>
+  <h2 class="section-title">CONTACT US</h2>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-card-icon">💬</div>
+      <div class="contact-card-title">Live Chat</div>
+      <div class="contact-card-sub">Chat with a real team member. Average wait under 2 minutes during support hours.</div>
+      <div class="contact-card-action">Start chat →</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">✉️</div>
+      <div class="contact-card-title">Email Support</div>
+      <div class="contact-card-sub">Send us a message and we'll reply within 4 hours during business hours.</div>
+      <div class="contact-card-action">support@ashishfitnesszone.com →</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">📞</div>
+      <div class="contact-card-title">Phone Line</div>
+      <div class="contact-card-sub">Speak to a team member directly. Best for urgent account or access issues.</div>
+      <div class="contact-card-action">0800 555 0199 →</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-icon">📍</div>
+      <div class="contact-card-title">Visit Us</div>
+      <div class="contact-card-sub">Walk into any Ashish Fitness Zone location. Reception staff can handle most support issues on the spot.</div>
+      <div class="contact-card-action">Find a location →</div>
+    </div>
+  </div>
+
+  <!-- FORM + HOURS -->
+  <div class="chat-form-wrap" id="hours">
+    <div>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Alex Johnson" />
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="alex@email.com" />
+      </div>
+      <div class="form-group">
+        <label>Topic</label>
+        <select>
+          <option>Membership & Plans</option>
+          <option>Billing & Payments</option>
+          <option>Class Bookings</option>
+          <option>Access & Entry</option>
+          <option>Account Settings</option>
+          <option>Facilities & Equipment</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Describe your issue or question..."></textarea>
+      </div>
+      <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
+    </div>
+
+    <div class="chat-info">
+      <div class="chat-info-title">SUPPORT HOURS</div>
+      <ul class="hours-list">
+        <li class="today"><span>Monday</span><span>6:00 am – 10:00 pm</span></li>
+        <li class="today"><span>Tuesday</span><span>6:00 am – 10:00 pm</span></li>
+        <li class="today"><span>Wednesday</span><span>6:00 am – 10:00 pm</span></li>
+        <li class="today"><span>Thursday ←</span><span>6:00 am – 10:00 pm</span></li>
+        <li><span>Friday</span><span>6:00 am – 9:00 pm</span></li>
+        <li><span>Saturday</span><span>7:00 am – 6:00 pm</span></li>
+        <li><span>Sunday</span><span>8:00 am – 4:00 pm</span></li>
+      </ul>
+
+      <div class="chat-badge">
+        <div class="dot"></div>
+        Support team online now
+      </div>
+
+      <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border);">
+        <p style="font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.7;">Outside support hours? Leave a message and we'll respond first thing the following morning. For urgent access issues, call our 24/7 emergency line.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ASHISH <span>FITNESS ZONE</span></div>
+  <div class="footer-note">© 2026 Ashish Fitness Zone Gym. All rights reserved.</div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-question').forEach(b => b.classList.remove('open'));
+    if (!isOpen) {
+      answer.classList.add('open');
+      btn.classList.add('open');
+    }
+  }
+
+  function scrollToFaq() {
+    document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function handleSearch() {
+    const q = document.getElementById('searchInput').value.trim();
+    if (q) {
+      document.getElementById('faq').scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') handleSearch();
+  });
+
+  function handleSubmit() {
+    const btn = document.querySelector('.submit-btn');
+    btn.textContent = 'Message Sent ✓';
+    btn.style.background = '#64dc78';
+    setTimeout(() => {
+      btn.textContent = 'Send Message →';
+      btn.style.background = '';
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
