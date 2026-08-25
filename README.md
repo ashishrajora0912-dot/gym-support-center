@@ -18,9 +18,6 @@ A dark-themed, fully responsive **gym support/help center** website — built to
 ## 🛠️ Tech Stack
 HTML • CSS (custom properties/theming) • Vanilla JavaScript
 
-## 📸 Screenshots
-_(add 1–2 screenshots here — ![Uploading screencapture-musical-entremet-1a35f0-netlify-app-2026-08-25-21_00_10.png…]())_
-
 ## 🚀 What I Learned
 - Structuring a multi-section single-page layout with sticky navigation
 - Building interactive UI (accordion, live search-to-scroll) without a framework
